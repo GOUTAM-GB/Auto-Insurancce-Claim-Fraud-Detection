@@ -8,4 +8,4 @@ def employeeLogin(request):
 def employeeRegisterForm(request):
     return render(request,'employeeRegistrations.html')
 def managementLogin(request):
-    return render(request,'managementLogin.html')
+    return render(request,'ManagementLogin.html')
