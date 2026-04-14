@@ -61,8 +61,8 @@
         <h3 style="margin-top: 0; font-weight: 800; font-size: 1.8rem; letter-spacing: 0.5px;">Portal Management</h3>
         <p style="opacity: 0.9; font-size: 1.05rem; margin-bottom: 30px;">Access secure tools for claim verification and management.</p>
         <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-            <a href="#" style="background: #ffffff; color: #1e3a8a; text-decoration: none; padding: 14px 35px; border-radius: 12px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">Staff Login</a>
-            <a href="#" style="background: rgba(255,255,255,0.2); color: #ffffff; text-decoration: none; padding: 14px 35px; border-radius: 12px; font-weight: 700; border: 2px solid rgba(255,255,255,0.4); transition: 0.3s;">Management</a>
+            <a href="{% url 'managementLogin' %}" style="background: #ffffff; color: #1e3a8a; text-decoration: none; padding: 14px 35px; border-radius: 12px; font-weight: 700; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">Staff Login</a>
+            <a href="{% url 'employeeLogin' %}" style="background: rgba(255,255,255,0.2); color: #ffffff; text-decoration: none; padding: 14px 35px; border-radius: 12px; font-weight: 700; border: 2px solid rgba(255,255,255,0.4); transition: 0.3s;">Employee Login</a>
         </div>
     </div>
 </div>
