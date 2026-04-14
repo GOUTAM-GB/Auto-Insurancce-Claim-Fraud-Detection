@@ -1,0 +1,55 @@
+{% extends 'Employess/employeebase.html' %}
+
+{% block contents %}
+<div class="glass-card">
+    <div style="margin-bottom: 40px; border-bottom: 2px solid rgba(37, 99, 235, 0.1); padding-bottom: 20px;">
+        <h2 style="color: var(--primary-dark); font-size: 2rem; margin: 0;">Welcome, Employee</h2>
+        <p style="color: var(--text-muted); margin-top: 5px;">Analytical Overview of Auto Insurance Fraud Patterns</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr; gap: 30px;">
+        
+        <section>
+            <h3 style="color: var(--primary-blue); display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-magnifying-glass-chart"></i> Auto Insurance Fraud Detection
+            </h3>
+            <p style="line-height: 1.8; color: var(--text-main); font-size: 1.05rem;">
+                Insurance fraud is a growing concern for auto insurance companies, costing billions each year. 
+                Detecting fraudulent claims early can help save costs and maintain trust between insurers and customers.
+            </p>
+        </section>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            <div style="background: rgba(255,255,255,0.4); padding: 25px; border-radius: 15px; border: 1px solid white;">
+                <h4 style="color: var(--primary-dark); margin-top: 0;">Common Fraudulent Activities</h4>
+                <ul style="padding-left: 20px; line-height: 2; color: var(--text-muted); font-size: 0.95rem;">
+                    <li>Staged accidents or intentional collisions</li>
+                    <li>Exaggerating damage or injury claims</li>
+                    <li>Submitting multiple claims for same damage</li>
+                    <li>Falsifying information on applications</li>
+                </ul>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.4); padding: 25px; border-radius: 15px; border: 1px solid white;">
+                <h4 style="color: var(--primary-dark); margin-top: 0;">How We Detect Fraud</h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">
+                    Using advanced models such as <strong>Random Forest</strong> and <strong>ANN</strong>, we analyze data patterns 
+                    to identify suspicious activity with high precision.
+                </p>
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <span style="background: var(--primary-blue); color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8rem;">ANN</span>
+                    <span style="background: var(--primary-dark); color: white; padding: 4px 10px; border-radius: 5px; font-size: 0.8rem;">Random Forest</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: var(--primary-dark); color: white; padding: 25px; border-radius: 18px; text-align: center; margin-top: 20px;">
+            <h4 style="margin: 0 0 10px 0;">Protect Your Business</h4>
+            <p style="opacity: 0.8; font-size: 0.9rem; margin: 0;">
+                Early detection safeguards your claims process from financial losses. 
+                Use the tools in the navigation bar to start analyzing datasets.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

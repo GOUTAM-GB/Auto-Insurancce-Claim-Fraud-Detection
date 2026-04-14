@@ -1,0 +1,80 @@
+{% extends 'Management/managementhome.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="glass-card" style="max-width: 1100px; padding: 30px;">
+    
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2 style="color: var(--primary-dark); font-weight: 800; margin: 0;">
+            <i class="fas fa-users-cog" style="margin-right: 10px;"></i> Employee Directory
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Manage portal access and account activations</p>
+    </div>
+
+    <div class="table-responsive">
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0 8px;">
+            <thead>
+                <tr style="color: var(--primary-dark); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px;">
+                    <th style="padding: 15px; text-align: left;">ID</th>
+                    <th style="padding: 15px; text-align: left;">User Profile</th>
+                    <th style="padding: 15px; text-align: left;">Contact Info</th>
+                    <th style="padding: 15px; text-align: left;">Location</th>
+                    <th style="padding: 15px; text-align: center;">Action / Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in ud %}
+                <tr style="background: rgba(255,255,255,0.5); transition: 0.3s; border-radius: 12px;">
+                    <td style="padding: 15px; font-weight: 700; color: var(--primary-blue);">#{{ user.id }}</td>
+                    <td style="padding: 15px;">
+                        <div style="font-weight: 700; color: var(--text-main);">{{ user.name }}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">ID: {{ user.loginid }}</div>
+                    </td>
+                    <td style="padding: 15px;">
+                        <div style="font-size: 0.9rem;"><i class="far fa-envelope"></i> {{ user.email }}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);"><i class="fas fa-mobile-alt"></i> {{ user.mobile }}</div>
+                    </td>
+                    <td style="padding: 15px; font-size: 0.9rem;">
+                        {{ user.location }}, {{ user.state }}
+                    </td>
+                    <td style="padding: 15px; text-align: center;">
+                        {% if user.status == 'waiting' %}
+                            <a href="/updateEmployeeStatus?loginid={{ user.loginid }}" 
+                               style="background: var(--primary-blue); color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 700; display: inline-block;">
+                                <i class="fas fa-check-circle"></i> Activate
+                            </a>
+                        {% else %}
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <span style="color: #16a34a; font-size: 0.7rem; font-weight: 800; text-transform: uppercase;">Active</span>
+                                <a href="{% url 'DeleteUsers' %}?uid={{ user.id }}" 
+                                   style="color: #ef4444; font-size: 0.8rem; text-decoration: none; font-weight: 600;"
+                                   onclick="return confirm('Permanently delete this user?')">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        <i class="fas fa-user-slash" style="font-size: 2rem; display: block; margin-bottom: 10px;"></i>
+                        No employee records found.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    tbody tr:hover {
+        background: white !important;
+        transform: scale(1.01);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; }
+    td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; }
+</style>
+{% endblock %}

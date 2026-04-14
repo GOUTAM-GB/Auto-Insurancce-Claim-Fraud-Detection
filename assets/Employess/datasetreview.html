@@ -1,0 +1,127 @@
+{% extends 'Employess/employeeHome.html'%}
+{% load static %}
+
+{% block contents %}
+<style>
+    /* Scoped table wrapper styles */
+    #dataset-container {
+        width: 100%;
+        margin: 40px auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    /* Sticky Header for Table */
+    #dataset-container .table thead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        color: white;
+    }
+
+    #dataset-container .table thead th {
+        background: linear-gradient(135deg, #2563eb, #1e3a8a);
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        padding: 15px 12px;
+        white-space: nowrap;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Table Body Styling */
+    #dataset-container .table {
+        font-family: 'Segoe UI', Roboto, monospace;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        margin-bottom: 0;
+        width: auto;
+        min-width: 100%;
+    }
+
+    #dataset-container .table tbody td {
+        padding: 12px;
+        border: 1px solid #e2e8f0;
+        white-space: nowrap;
+        text-align: left;
+        font-size: 0.9rem;
+        color: #0f172a;
+    }
+
+    /* Alternating row colors */
+    #dataset-container .table tbody tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+
+    #dataset-container .table tbody tr:hover {
+        background-color: #eff6ff;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Responsive wrapper for horizontal scrolling */
+    #dataset-container .table-responsive {
+        border-radius: 12px;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 70vh;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Custom scrollbar styling for horizontal */
+    #dataset-container .table-responsive::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+    }
+
+    #dataset-container .table-responsive::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+
+    #dataset-container .table-responsive::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+    }
+
+    #dataset-container .table-responsive::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+
+    /* Firefox scrollbar */
+    #dataset-container .table-responsive {
+        scrollbar-color: #cbd5e1 #f1f5f9;
+        scrollbar-width: thin;
+    }
+
+    /* Page title styling */
+    #dataset-container h2 {
+        text-align: center;
+        color: #1e3a8a;
+        font-weight: 800;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+</style>
+
+<section id="dataset-container">
+    <h2>
+        <i class="fas fa-database" style="margin-right: 12px; color: #2563eb;"></i> Dataset Overview
+    </h2>
+
+    <!-- Bootstrap 5 Responsive Table Wrapper -->
+    <div class="table-responsive">
+        <table class="table table-sm">
+            {{ data|safe }}
+        </table>
+    </div>
+</section>
+
+{% endblock %}

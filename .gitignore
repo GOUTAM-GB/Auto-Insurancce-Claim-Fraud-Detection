@@ -1,0 +1,20 @@
+# Environments
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Django
+*.log
+local_settings.py
+staticfiles/
+
+# Note: We are deliberately NOT ignoring db.sqlite3 
+# so that it is included in the Render deployment.

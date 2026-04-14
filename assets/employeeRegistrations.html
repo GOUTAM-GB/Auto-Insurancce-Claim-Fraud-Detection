@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="glass-card" style="max-width: 600px; padding: 40px; margin-top: 20px; margin-bottom: 40px;">
+    
+    <div style="text-align: center; margin-bottom: 35px;">
+        <div style="width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+            <i class="fas fa-user-plus" style="font-size: 1.8rem; color: var(--primary-blue);"></i>
+        </div>
+        <h1 style="color: var(--primary-dark); font-size: 1.8rem; font-weight: 800; margin: 0;">Employee Registration</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; font-weight: 500;">Please enter valid details carefully to create your account.</p>
+    </div>
+
+    <form action="/employeeRegister" method="POST" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        {% csrf_token %}
+        
+        <div style="grid-column: span 2;">
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Full Name</label>
+            <div style="position: relative;">
+                <i class="fas fa-user" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                <input type="text" name="name" required placeholder="John Doe" minlength="2"
+                    style="width: 100%; padding: 12px 15px 12px 45px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+            </div>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Login ID</label>
+            <input type="text" name="loginid" required placeholder="Unique ID" pattern="[a-zA-Z0-9]{3,}"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Password</label>
+            <input type="password" name="pswd" required placeholder="Min 6 chars" minlength="6"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div style="grid-column: span 2;">
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Email Address</label>
+            <input type="email" name="email" required placeholder="name@company.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Mobile Number</label>
+            <input type="text" name="mobile" required placeholder="10-digit number" pattern="^\d{10}$"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">State</label>
+            <input type="text" name="state" required placeholder="e.g. California"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div style="grid-column: span 2;">
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Office Location</label>
+            <input type="text" name="location" required placeholder="City, Branch Name"
+                style="width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); box-sizing: border-box; outline: none;">
+        </div>
+
+        <div style="grid-column: span 2; margin-top: 10px;">
+            <button type="submit" style="width: 100%; background: var(--primary-blue); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                Complete Registration
+            </button>
+        </div>
+    </form>
+
+    {% if messages %}
+    <div style="margin-top: 25px;">
+        {% for message in messages %}
+        <div style="background: #ecfdf5; border: 1px solid #10b981; color: #065f46; padding: 15px; border-radius: 10px; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-check-circle"></i>
+            <span style="font-size: 0.9rem; font-weight: 600;">{{ message }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.05);">
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Already registered? <a href="{% url 'employeeLogin' %}" style="color: var(--primary-blue); text-decoration: none; font-weight: 700;">Login Now</a></p>
+    </div>
+</div>
+{% endblock %}

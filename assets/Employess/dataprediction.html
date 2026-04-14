@@ -1,0 +1,156 @@
+{% extends 'Employess/employeebase.html' %}
+{% block contents %}
+
+<div class="glass-card" style="max-width: 900px; padding: 40px;">
+    <div style="text-align: center; margin-bottom: 30px;">
+        <div style="width: 60px; height: 60px; background: rgba(37, 99, 235, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+            <i class="fas fa-file-invoice-dollar" style="font-size: 1.8rem; color: var(--primary-blue);"></i>
+        </div>
+        <h2 style="color: var(--primary-dark); margin: 0; font-weight: 800;">High-Accuracy Fraud Prediction</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;">Using the Optimized Ensemble Model for 95%+ Accuracy</p>
+    </div>
+
+    {% if result %}
+    <div style="background: {% if 'fraud' in result.lower %}#fef2f2{% else %}#f0fdf4{% endif %}; 
+                border: 1px solid {% if 'fraud' in result.lower %}#ef4444{% else %}#22c55e{% endif %}; 
+                padding: 20px; border-radius: 15px; margin-bottom: 30px; text-align: center; animation: slideIn 0.5s ease-out;">
+        <h3 style="margin: 0; font-size: 1.1rem; color: var(--text-main);">
+            Analysis Result: 
+            <span style="color: {% if 'fraud' in result.lower %}#dc2626{% else %}#16a34a{% endif %}; font-weight: 800; text-transform: uppercase;">
+                {{ result }}
+            </span>
+        </h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 5px;">Processed by Maximum Accuracy Pipeline</p>
+    </div>
+    {% endif %}
+
+    <form action="/fruad_predict" method="post" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+        {% csrf_token %}
+
+        <div style="grid-column: span 3; background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+            <p style="margin: 0; font-size: 0.8rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase;">Primary Identifiers</p>
+        </div>
+
+        <div style="grid-column: span 2;">
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Policy Number</label>
+            <input type="text" name="policy_number" required placeholder="Ex: 521585"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); outline: none;">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Insured Age</label>
+            <input type="number" name="age" required placeholder="Ex: 48"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div style="grid-column: span 3; background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; margin-top: 10px;">
+            <p style="margin: 0; font-size: 0.8rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase;">Incident Details</p>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Incident Type</label>
+            <select name="incident_type" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); cursor: pointer;">
+                <option value="">Select...</option>
+                <option value="Single Vehicle Collision">Single Vehicle Collision</option>
+                <option value="Multi-vehicle Collision">Multi-vehicle Collision</option>
+                <option value="Parked Car">Parked Car</option>
+                <option value="Vehicle Theft">Vehicle Theft</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Collision Type</label>
+            <select name="collision_type" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); cursor: pointer;">
+                <option value="">Select...</option>
+                <option value="Side Collision">Side Collision</option>
+                <option value="Rear Collision">Rear Collision</option>
+                <option value="Front Collision">Front Collision</option>
+                <option value="Unknown">Unknown / ?"</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Incident Severity</label>
+            <select name="incident_severity" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); cursor: pointer;">
+                <option value="">Select...</option>
+                <option value="Minor Damage">Minor Damage</option>
+                <option value="Total Loss">Total Loss</option>
+                <option value="Trivial Damage">Trivial Damage</option>
+                <option value="Major Damage">Major Damage</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Authorities Contacted</label>
+            <select name="authorities_contacted" required style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9); cursor: pointer;">
+                <option value="Police">Police</option>
+                <option value="Fire">Fire</option>
+                <option value="Ambulance">Ambulance</option>
+                <option value="Other">Other</option>
+                <option value="None">None</option>
+            </select>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Witnesses</label>
+            <input type="number" name="witnesses" placeholder="0" min="0" max="10"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Bodily Injuries</label>
+            <input type="number" name="bodily_injuries" placeholder="0" min="0" max="10"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div style="grid-column: span 3; background: rgba(37, 99, 235, 0.05); padding: 15px; border-radius: 10px; margin-bottom: 10px; margin-top: 10px;">
+            <p style="margin: 0; font-size: 0.8rem; color: var(--primary-blue); font-weight: 700; text-transform: uppercase;">Financial Details</p>
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Total Claim ($)</label>
+            <input type="number" name="total_claim_amount" required placeholder="0.00"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Injury Claim ($)</label>
+            <input type="number" name="injury_claim" required placeholder="0.00"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Property Claim ($)</label>
+            <input type="number" name="property_claim" required placeholder="0.00"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div>
+            <label style="display: block; font-weight: 700; font-size: 0.75rem; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">Vehicle Claim ($) </label>
+            <input type="number" name="vehicle_claim" required placeholder="0.00"
+                style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #e2e8f0; background: rgba(255,255,255,0.9);">
+        </div>
+
+        <div style="grid-column: span 3; margin-top: 25px;">
+            <button type="submit" style="width: 100%; background: var(--primary-blue); color: white; border: none; padding: 18px; border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);">
+                <i class="fas fa-microscope" style="margin-right: 8px;"></i> Run Advanced Analysis
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    input:focus, select:focus {
+        border-color: var(--primary-blue) !important;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+    label {
+        letter-spacing: 0.5px;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+Django>=5.1.1
+xgboost>=3.2.0
+scikit-learn>=1.8.0
+pandas>=3.0.2
+imbalanced-learn>=0.14.1
+numpy>=2.4.4
+matplotlib>=3.10.8
+seaborn>=0.13.2
+gunicorn>=23.0.0
+whitenoise>=6.7.0

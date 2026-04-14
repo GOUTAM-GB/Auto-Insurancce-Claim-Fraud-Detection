@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<div class="glass-card" style="max-width: 480px; padding: 50px;">
+    
+    <div style="text-align: center; margin-bottom: 40px;">
+        <div style="width: 75px; height: 75px; background: rgba(30, 58, 138, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(30, 58, 138, 0.2);">
+            <i class="fas fa-user-shield" style="font-size: 2.2rem; color: var(--primary-dark);"></i>
+        </div>
+        <h1 style="color: var(--primary-dark); font-size: 1.8rem; font-weight: 800; margin: 0; letter-spacing: -0.5px;">Management Portal</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 10px; font-weight: 500;">Administrative Secure Access Only</p>
+    </div>
+
+    <form action="/managementLoginCheck" method="POST">
+        {% csrf_token %}
+        
+        <div style="margin-bottom: 22px;">
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Admin ID</label>
+            <div style="position: relative;">
+                <i class="fas fa-fingerprint" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
+                <input type="text" name="loginid" required placeholder="Manager Username" 
+                    style="width: 100%; padding: 14px 15px 14px 45px; border-radius: 12px; border: 1px solid #cbd5e1; background: rgba(255,255,255,0.9); font-size: 1rem; box-sizing: border-box; transition: all 0.3s; outline: none;"
+                    onfocus="this.style.borderColor='var(--primary-dark)'; this.style.boxShadow='0 0 0 4px rgba(30, 58, 138, 0.1)'"
+                    onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 35px;">
+            <label style="display: block; font-weight: 700; font-size: 0.8rem; color: var(--primary-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Security Key</label>
+            <div style="position: relative;">
+                <i class="fas fa-key" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #64748b;"></i>
+                <input type="password" name="pswd" required placeholder="••••••••" 
+                    style="width: 100%; padding: 14px 15px 14px 45px; border-radius: 12px; border: 1px solid #cbd5e1; background: rgba(255,255,255,0.9); font-size: 1rem; box-sizing: border-box; transition: all 0.3s; outline: none;"
+                    onfocus="this.style.borderColor='var(--primary-dark)'; this.style.boxShadow='0 0 0 4px rgba(30, 58, 138, 0.1)'"
+                    onblur="this.style.borderColor='#cbd5e1'; this.style.boxShadow='none'">
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px;">
+            <button type="submit" style="background: var(--primary-dark); color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);"
+                onmouseover="this.style.transform='translateY(-2px)'; this.style.filter='brightness(1.2)'"
+                onmouseout="this.style.transform='translateY(0)'; this.style.filter='none'">
+                Authorized Login
+            </button>
+            
+            <button type="reset" style="background: #f8fafc; color: #64748b; border: 1px solid #cbd5e1; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;"
+                onmouseover="this.style.background='#f1f5f9'"
+                onmouseout="this.style.background='#f8fafc'">
+                Reset
+            </button>
+        </div>
+    </form>
+
+    <div style="margin-top: 35px; text-align: center; background: rgba(0,0,0,0.03); padding: 15px; border-radius: 12px; border: 1px dashed #cbd5e1;">
+        <p style="margin: 0; font-size: 0.8rem; color: #64748b; line-height: 1.4;">
+            <i class="fas fa-info-circle" style="margin-right: 5px;"></i> 
+            All management login attempts are logged with IP addresses for audit purposes.
+        </p>
+    </div>
+</div>
+{% endblock %}
