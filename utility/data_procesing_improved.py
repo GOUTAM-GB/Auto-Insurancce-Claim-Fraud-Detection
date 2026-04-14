@@ -26,9 +26,9 @@ try:
 except:
     lgb = None
 
-MODEL_PATH = r'models\fraud_detection_model.pkl'
-SCALER_PATH = r'models\fraud_scaler.pkl'
-ENCODER_PATH = r'models\fraud_encoders.pkl'
+MODEL_PATH = r'models/fraud_detection_model.pkl'
+SCALER_PATH = r'models/fraud_scaler.pkl'
+ENCODER_PATH = r'models/fraud_encoders.pkl'
 
 def ensure_model_dir():
     """Create models directory if it doesn't exist"""
@@ -247,7 +247,7 @@ def load_model():
 # Main execution
 def main():
     """Main function for model training and evaluation"""
-    file_path = r'media\insurance fraud claims.csv'
+    file_path = r'media/insurance fraud claims.csv'
     
     # Load and preprocess data
     data = load_data(file_path)
@@ -286,7 +286,7 @@ def prediction_value(input_data):
     """
     Predict fraud for a single input sample using saved model
     """
-    file_path = r'media\insurance fraud claims.csv'
+    file_path = r'media/insurance fraud claims.csv'
     
     # Load model and preprocessing objects
     model_data = load_model()

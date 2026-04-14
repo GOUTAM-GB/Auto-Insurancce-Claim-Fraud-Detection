@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load dataset
-df = pd.read_csv(r'media\insurance fraud claims.csv')
+df = pd.read_csv(r'media/insurance fraud claims.csv')
 
 # Filter for fraud claims (fraud_reported = 'Y')
 fraud_claims = df[df['fraud_reported'] == 'Y'].copy()

@@ -17,8 +17,8 @@ import xgboost as xgb
 warnings.filterwarnings('ignore')
 
 # Constants
-MODEL_PATH = r'models\fraud_detection_model_max.pkl'
-DATA_PATH = r'media\insurance fraud claims.csv'
+MODEL_PATH = r'models/fraud_detection_model_max.pkl'
+DATA_PATH = r'media/insurance fraud claims.csv'
 
 def load_data(file_path):
     """Load the CSV file"""

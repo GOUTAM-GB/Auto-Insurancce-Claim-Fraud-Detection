@@ -2,7 +2,7 @@ import pandas as pd
 from utility.data_procesing_max_accuracy import prediction_value
 
 # Load some sample data
-data = pd.read_csv(r'media\insurance fraud claims.csv')
+data = pd.read_csv(r'media/insurance fraud claims.csv')
 
 # Test with first few rows
 for i in range(5):

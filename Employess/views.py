@@ -92,7 +92,7 @@ from django.conf import settings
    
 def dataset(request):
    
-    path=r'media\insurance fraud claims.csv'
+    path=r'media/insurance fraud claims.csv'
     df = pd.read_csv(path, nrows=100)
     df = df.to_html()
     return render(request, 'Employess/datasetreview.html', {'data': df})

@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load dataset
-df = pd.read_csv(r'media\insurance fraud claims.csv')
+df = pd.read_csv(r'media/insurance fraud claims.csv')
 
 # Filter for real claims (fraud_reported = 'N')
 real_claims = df[df['fraud_reported'] == 'N'].copy()

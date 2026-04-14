@@ -27,7 +27,7 @@ def employeeDetails(request):
     return render(request,'Management/employeeDetais.html',context={'ud':ud})
 
 def datasetdetails(request):
-    path=r'media\insurance fraud claims.csv'
+    path=r'media/insurance fraud claims.csv'
     data=pd.read_csv(path, nrows=100).to_html()
     return render(request,'Management/datasetreview.html',context={'data':data})
 
